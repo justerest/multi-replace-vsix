@@ -1,38 +1,55 @@
 {
-	"name": "multi-replace",
-	"displayName": "multi-replace",
-	"description": "Replaces text and filenames in the selected catalog preserving cases.",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.30.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:extension.helloWorld"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "npm run compile && node ./node_modules/vscode/bin/test"
-	},
-	"devDependencies": {
-		"typescript": "^3.1.4",
-		"vscode": "^1.1.25",
-		"tslint": "^5.8.0",
-		"@types/node": "^8.10.25",
-		"@types/mocha": "^2.2.42"
-	}
+  "name": "multi-replace",
+  "displayName": "multi-replace",
+  "description": "Replaces text and filenames in the selected catalog preserving cases.",
+  "version": "0.0.1",
+  "publisher": "justerest",
+  "engines": {
+    "vscode": "^1.30.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.multiReplace",
+    "onCommand:extension.multiReplaceStrict"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.multiReplace",
+          "group": "_multiReplace",
+          "when": "explorerViewletVisible"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "extension.multiReplace",
+        "title": "Multi replace"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "dependencies": {
+    "@justerest/multi-replace": "^1.4.0",
+    "fs-extra": "^7.0.1",
+    "rxjs": "^6.3.3"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.4",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2",
+    "vscode": "^1.1.26"
+  }
 }
