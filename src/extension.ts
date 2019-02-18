@@ -1,4 +1,4 @@
-import { multiReplaceFiles } from '@justerest/multi-replace';
+import { multiReplace } from '@justerest/multi-replace';
 import { basename, extname } from 'path';
 import { commands, ExtensionContext, Uri, window } from 'vscode';
 
@@ -9,19 +9,22 @@ export function activate(context: ExtensionContext) {
         const paths = uris.map((uri) => uri.fsPath);
         const placeholder = basename(paths[0], extname(paths[0]));
         const searchValue = await window.showInputBox({ prompt: 'Search value', value: placeholder, ignoreFocusOut: true });
-        if (!searchValue) return window.showInformationMessage('Multi replace canceled');
+        if (!searchValue) return cancel();
         const replaceValue = await window.showInputBox({ prompt: 'Replace value', value: placeholder, ignoreFocusOut: true });
-        if (!replaceValue) return window.showInformationMessage('Multi replace canceled');
+        if (!replaceValue) return cancel();
 
-        multiReplaceFiles({ paths, searchValue, replaceValue })
-            .subscribe({
-                complete() {
-                    window.showInformationMessage('Multi replace successfully completed');
-                },
-            });
+        multiReplace(paths, searchValue, replaceValue).subscribe({
+            complete() {
+                window.showInformationMessage('Multi replace successfully completed');
+            },
+        });
     });
 
     context.subscriptions.push(multiReplaceHook);
+}
+
+function cancel() {
+    return window.showInformationMessage('Multi replace canceled');
 }
 
 export function deactivate() {

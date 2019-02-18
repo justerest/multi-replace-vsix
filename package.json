@@ -4,33 +4,40 @@
   "description": "Replaces text and filenames in the selected catalog preserving cases.",
   "version": "0.0.1",
   "publisher": "justerest",
+  "keywords": [
+    "replace",
+    "rename",
+    "files",
+    "filename",
+    "angular",
+    "component"
+  ],
   "engines": {
     "vscode": "^1.30.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justerest/multi-replace-vsix.git"
+  },
   "categories": [
-    "Other"
+    "Extension Packs"
   ],
   "activationEvents": [
-    "onCommand:extension.multiReplace",
-    "onCommand:extension.multiReplaceStrict"
+    "onCommand:extension.multiReplace"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "menus": {
-      "explorer/context": [
-        {
-          "command": "extension.multiReplace",
-          "group": "_multiReplace",
-          "when": "explorerViewletVisible"
-        }
-      ]
-    },
-    "commands": [
-      {
+      "explorer/context": [{
         "command": "extension.multiReplace",
-        "title": "Multi replace"
-      }
-    ]
+        "group": "_multiReplace",
+        "when": "explorerViewletVisible"
+      }]
+    },
+    "commands": [{
+      "command": "extension.multiReplace",
+      "title": "Multi replace"
+    }]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -40,16 +47,16 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "dependencies": {
-    "@justerest/multi-replace": "^1.4.0",
+    "@justerest/multi-replace": "^2.0.2",
     "fs-extra": "^7.0.1",
-    "rxjs": "^6.3.3"
+    "rxjs": "^6.4.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "^5.0.4",
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.18",
-    "tslint": "^5.12.0",
-    "typescript": "^3.2.2",
-    "vscode": "^1.1.26"
+    "@types/fs-extra": "^5.0.5",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.9.4",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3",
+    "vscode": "^1.1.29"
   }
 }
