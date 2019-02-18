@@ -2,7 +2,7 @@
   "name": "multi-replace",
   "displayName": "multi-replace",
   "description": "Replaces text and filenames in the selected catalog preserving cases.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "justerest",
   "keywords": [
     "replace",
@@ -28,16 +28,20 @@
   "main": "./out/extension.js",
   "contributes": {
     "menus": {
-      "explorer/context": [{
-        "command": "extension.multiReplace",
-        "group": "_multiReplace",
-        "when": "explorerViewletVisible"
-      }]
+      "explorer/context": [
+        {
+          "command": "extension.multiReplace",
+          "group": "_multiReplace",
+          "when": "explorerViewletVisible"
+        }
+      ]
     },
-    "commands": [{
-      "command": "extension.multiReplace",
-      "title": "Multi replace"
-    }]
+    "commands": [
+      {
+        "command": "extension.multiReplace",
+        "title": "Multi replace"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
