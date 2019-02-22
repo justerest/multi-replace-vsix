@@ -2,7 +2,7 @@
   "name": "multi-replace",
   "displayName": "multi-replace",
   "description": "Replaces text and filenames in the selected catalog preserving cases.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "justerest",
   "keywords": [
     "replace",
