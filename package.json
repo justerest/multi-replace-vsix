@@ -28,18 +28,25 @@
   "main": "./out/extension.js",
   "contributes": {
     "menus": {
-      "explorer/context": [
-        {
+      "explorer/context": [{
           "command": "extension.multiReplace",
+          "group": "_multiReplace",
+          "when": "explorerViewletVisible"
+        },
+        {
+          "command": "extension.multiReplaceStrict",
           "group": "_multiReplace",
           "when": "explorerViewletVisible"
         }
       ]
     },
-    "commands": [
-      {
+    "commands": [{
         "command": "extension.multiReplace",
-        "title": "Multi replace"
+        "title": "multi-replace"
+      },
+      {
+        "command": "extension.multiReplaceStrict",
+        "title": "multi-replace (strict)"
       }
     ]
   },
@@ -51,13 +58,13 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "dependencies": {
-    "@justerest/multi-replace": "^2.1.1"
+    "@justerest/multi-replace": "^2.2.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.5",
     "@types/mocha": "^5.2.6",
-    "@types/node": "^11.9.4",
-    "tslint": "^5.12.1",
+    "@types/node": "^11.9.5",
+    "tslint": "^5.13.0",
     "typescript": "^3.3.3333",
     "vscode": "^1.1.30"
   }
