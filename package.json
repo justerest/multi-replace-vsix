@@ -23,7 +23,8 @@
     "Extension Packs"
   ],
   "activationEvents": [
-    "onCommand:extension.multiReplace"
+    "onCommand:extension.multiReplace",
+    "onCommand:extension.multiReplaceStrict"
   ],
   "main": "./out/extension.js",
   "contributes": {
