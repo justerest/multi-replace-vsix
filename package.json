@@ -61,14 +61,14 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "dependencies": {
-    "@justerest/multi-replace": "^2.2.1"
+    "@justerest/multi-replace": "^2.3.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "^5.0.5",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^11.9.5",
-    "tslint": "^5.13.0",
-    "typescript": "^3.3.3333",
-    "vscode": "^1.1.30"
+    "@types/fs-extra": "^8.0.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3",
+    "vscode": "^1.1.36"
   }
 }
