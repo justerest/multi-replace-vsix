@@ -23,8 +23,7 @@
     "Extension Packs"
   ],
   "activationEvents": [
-    "onCommand:extension.multiReplace",
-    "onCommand:extension.multiReplaceStrict"
+    "onCommand:extension.multiReplace"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -34,11 +33,6 @@
           "command": "extension.multiReplace",
           "group": "_multiReplace",
           "when": "explorerViewletVisible"
-        },
-        {
-          "command": "extension.multiReplaceStrict",
-          "group": "_multiReplace",
-          "when": "explorerViewletVisible"
         }
       ]
     },
@@ -46,10 +40,6 @@
       {
         "command": "extension.multiReplace",
         "title": "multi-replace"
-      },
-      {
-        "command": "extension.multiReplaceStrict",
-        "title": "multi-replace (strict)"
       }
     ]
   },
