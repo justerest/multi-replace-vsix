@@ -8,9 +8,9 @@ const multiReplacer = new MainService(void 0, void 0, filePathTransformer);
 const multiReplaceWithFolder = multiReplacer.multiReplace.bind(multiReplacer);
 
 enum Option {
+  Default = 'inside selected catalog (default)',
   Copy = 'copy folder and replace',
   RenameFolder = 'includes selected catalog',
-  Default = 'inside selected catalog (default)',
   Strict = 'strict (without case detection)',
 }
 
@@ -46,8 +46,12 @@ async function copyFolder(paths: string[], searchValue: string, replaceValue: st
 }
 
 async function askOption(): Promise<Option> {
-  const options = [Option.Copy, Option.RenameFolder, Option.Default, Option.Strict];
-  return ((await window.showQuickPick(options, { placeHolder: 'multi-replace' })) as Option) || Option.Default;
+  const options: Option[] = Object.values(Option);
+  const selectedOption = (await window.showQuickPick(options, { placeHolder: 'multi-replace' })) as Option;
+  if (selectedOption) {
+    return selectedOption;
+  }
+  throw new Error('');
 }
 
 function parseUris(uris?: Uri[]): Uri[] {
@@ -87,7 +91,7 @@ function complete() {
 
 export async function multiReplaceCommand(_uri?: Uri, uris?: Uri[]) {
   try {
-    main(parseUris(uris));
+    await main(parseUris(uris));
   } catch (error) {
     window.showInformationMessage((error as Error).message || 'multi-replace canceled');
   }
