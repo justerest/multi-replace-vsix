@@ -1,16 +1,11 @@
-import { DirFilePathTransformer, MainService, multiReplace, multiReplaceStrict } from '@justerest/multi-replace';
-import { copy } from 'fs-extra';
+import { multiReplace, multiReplaceCopy, multiReplaceStrict, multiReplaceWithFolder } from '@justerest/multi-replace';
 import { basename, extname } from 'path';
 import { Uri, window } from 'vscode';
 
-const filePathTransformer = new DirFilePathTransformer();
-const multiReplacer = new MainService(void 0, void 0, filePathTransformer);
-const multiReplaceWithFolder = multiReplacer.multiReplace.bind(multiReplacer);
-
 enum Option {
-  Default = 'inside selected catalog (default)',
-  Copy = 'copy folder and replace',
-  RenameFolder = 'includes selected catalog',
+  Default = 'multi-replace inside selected catalog (default)',
+  Copy = 'copy and multi-replace',
+  RenameFolder = 'multi-replace including selected folder name',
   Strict = 'strict (without case detection)',
 }
 
@@ -19,30 +14,21 @@ async function main(uris: Uri[]) {
   const { paths, searchValue, replaceValue } = await askReplaceParams(uris);
   switch (selectedOption) {
     case Option.Copy:
-      const newFolderPath = await copyFolder(paths, searchValue, replaceValue);
-      multiReplace([newFolderPath], searchValue, replaceValue).subscribe({ complete });
+      multiReplaceCopy({ paths, searchValue, replaceValue }).subscribe({ complete });
       break;
 
     case Option.RenameFolder:
-      multiReplaceWithFolder(paths, searchValue, replaceValue).subscribe({ complete });
+      multiReplaceWithFolder({ paths, searchValue, replaceValue }).subscribe({ complete });
       break;
 
     case Option.Strict:
-      multiReplaceStrict(paths, searchValue, replaceValue).subscribe({ complete });
+      multiReplaceStrict({ paths, searchValue, replaceValue }).subscribe({ complete });
       break;
 
     default:
-      multiReplace(paths, searchValue, replaceValue).subscribe({ complete });
+      multiReplace({ paths, searchValue, replaceValue }).subscribe({ complete });
       break;
   }
-}
-
-async function copyFolder(paths: string[], searchValue: string, replaceValue: string): Promise<string> {
-  const path = paths[0];
-  const replacedPath = filePathTransformer.replace({ basePath: path, srcPath: path, searchValue, replaceValue });
-  const newFolderPath = path !== replacedPath ? replacedPath : `${path} copy`;
-  await copy(path, newFolderPath);
-  return newFolderPath;
 }
 
 async function askOption(): Promise<Option> {
