@@ -4,9 +4,9 @@ import { Uri, window } from 'vscode';
 
 enum Option {
   Default = 'multi-replace inside selected catalog (default)',
-  Copy = 'copy and multi-replace',
-  RenameFolder = 'multi-replace including selected folder name',
-  Strict = 'strict (without case detection)',
+  Copy = 'copy',
+  RenameFolder = 'rename',
+  Strict = 'strict multi-replace (without case detection)',
 }
 
 async function main(uris: Uri[]) {

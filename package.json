@@ -18,10 +18,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justerest/multi-replace-vsix.git"
+    "url": "https://github.com/justerest/multi-replace-vsix.git"
   },
   "categories": [
-    "Extension Packs"
+    "Other"
   ],
   "activationEvents": [
     "onCommand:extension.multiReplace"
