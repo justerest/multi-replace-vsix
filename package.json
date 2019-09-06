@@ -52,13 +52,13 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "dependencies": {
-    "@justerest/multi-replace": "^3.0.0"
+    "@justerest/multi-replace": "^3.0.1"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.2",
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.3",
+    "@types/node": "^12.7.4",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.2",
     "vscode": "^1.1.36"
   }
 }
