@@ -1,4 +1,9 @@
-import { multiReplace, multiReplaceCopy, multiReplaceStrict, multiReplaceWithFolder } from '@justerest/multi-replace';
+import {
+  multiReplace,
+  multiReplaceCopy,
+  multiReplaceStrict,
+  multiReplaceWithFolder,
+} from './index';
 import { basename, extname } from 'path';
 import { Uri, window } from 'vscode';
 
@@ -33,7 +38,9 @@ async function main(uris: Uri[]) {
 
 async function askOption(): Promise<Option> {
   const options: Option[] = Object.values(Option);
-  const selectedOption = (await window.showQuickPick(options, { placeHolder: 'multi-replace' })) as Option;
+  const selectedOption = (await window.showQuickPick(options, {
+    placeHolder: 'multi-replace',
+  })) as Option;
   if (selectedOption) {
     return selectedOption;
   }
@@ -56,7 +63,11 @@ async function askReplaceParams(uris: Uri[]) {
 }
 
 async function askSearchValue(placeholder: string): Promise<string> {
-  const searchValue = await window.showInputBox({ prompt: 'Search value', value: placeholder, ignoreFocusOut: true });
+  const searchValue = await window.showInputBox({
+    prompt: 'Search value',
+    value: placeholder,
+    ignoreFocusOut: true,
+  });
   if (searchValue) {
     return searchValue;
   }
@@ -64,7 +75,11 @@ async function askSearchValue(placeholder: string): Promise<string> {
 }
 
 async function askReplaceValue(placeholder: string): Promise<string> {
-  const replaceValue = await window.showInputBox({ prompt: 'Replace value', value: placeholder, ignoreFocusOut: true });
+  const replaceValue = await window.showInputBox({
+    prompt: 'Replace value',
+    value: placeholder,
+    ignoreFocusOut: true,
+  });
   if (replaceValue) {
     return replaceValue;
   }
