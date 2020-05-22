@@ -5,13 +5,13 @@ import {
   multiReplaceWithFolder,
 } from './index';
 import { basename, extname } from 'path';
-import { Uri, window } from 'vscode';
+import { Uri, window, QuickPickItem } from 'vscode';
 
 enum Option {
-  Default = 'multi-replace inside selected catalog (default)',
-  Copy = 'copy',
-  RenameFolder = 'rename',
-  Strict = 'strict multi-replace (without case detection)',
+  Default,
+  Copy,
+  RenameFolder,
+  Strict,
 }
 
 async function main(uris: Uri[]) {
@@ -37,12 +37,36 @@ async function main(uris: Uri[]) {
 }
 
 async function askOption(): Promise<Option> {
-  const options: Option[] = Object.values(Option);
-  const selectedOption = (await window.showQuickPick(options, {
+  const options: (QuickPickItem & { option: Option })[] = [
+    {
+      option: Option.Default,
+      label: 'Replace',
+      description: 'default',
+      detail: 'Replace text/filenames preserving cases',
+    },
+    {
+      option: Option.Copy,
+      label: 'Clone + Replace',
+      description: '',
+      detail: 'Clone folder and replace text/filenames',
+    },
+    {
+      option: Option.RenameFolder,
+      label: 'Replace text/filenames including selected folder name',
+      detail: 'Additional',
+    },
+    {
+      option: Option.Strict,
+      label: 'Replace text/filenames without case detection',
+      description: 'strict',
+      detail: 'Additional',
+    },
+  ];
+  const selectedOption = await window.showQuickPick(options, {
     placeHolder: 'multi-replace',
-  })) as Option;
+  });
   if (selectedOption) {
-    return selectedOption;
+    return selectedOption.option;
   }
   throw new Error('');
 }
