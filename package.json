@@ -55,7 +55,7 @@
   "dependencies": {
     "fs-extra": "^9.0.0",
     "glob": "^7.1.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "rxjs": "^6.5.5"
   },
   "devDependencies": {
