@@ -9,9 +9,7 @@ import { FileSystemService } from './models/file-system-service';
 export class FileSystemServiceImp implements FileSystemService {
   getFilesAtFolder(path: string): Observable<string[]> {
     return of(path, `${path}/**`).pipe(
-      concatMap((pattern) =>
-        bindNodeCallback<string, glob.IOptions, string[]>(glob)(pattern, { nodir: true }),
-      ),
+      concatMap((pattern) => bindNodeCallback(glob)(pattern, { nodir: true })),
       filter((paths) => !!paths.length),
       map((paths) => paths.map((p) => resolve(p))),
       take(1),
