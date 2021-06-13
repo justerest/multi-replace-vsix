@@ -12,3 +12,9 @@ Can be used to rename Angular components.
 5. Insert replace value (e.g. `our-new-component`) and press `Enter`
 
 Files in selected folder will be renamed and text inside this files will be replaced.
+
+## Troubleshooting
+
+If you want replace single word string like "example" with several word string like "new_example" it will be replaced with "newExample" because camelCase used by default for string that case not detected.
+
+Use `strict` option to replace some string with another string without case detection or configure `"multi-replace.default-case"` setting.

@@ -42,7 +42,22 @@
         "command": "extension.multiReplace",
         "title": "multi-replace"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "multi-replace",
+      "properties": {
+        "multi-replace.default-case": {
+          "type": "string",
+          "enum": [
+            "camelCase",
+            "kebab-case",
+            "snake_case"
+          ],
+          "default": "camelCase",
+          "description": "Fallback case for single word"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

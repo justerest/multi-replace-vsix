@@ -1,3 +1,4 @@
+import { fallbackTransformer } from './fallback-transformer';
 import { DirFilenameTransformerImp } from './filename-transformers/dir-filename-transformer-imp';
 import { StrictFilenameTransformerImp } from './filename-transformers/strict-filename-transformer-imp';
 import { CopyFilesParserImp } from './files-parsers/copy-files-parser-imp';
@@ -19,17 +20,26 @@ export * from './filename-transformers/strict-filename-transformer-imp';
 export * from './files-parsers/files-parser-imp';
 export * from './files-parsers/copy-files-parser-imp';
 
+StringTransformerImp.defaultTransformer = fallbackTransformer;
+
 const multiReplaceService = new MultiReplaceService();
 const multiReplaceCopyService = new MultiReplaceService(
-	void 0,
-	void 0,
-	new StrictFilenameTransformerImp(),
-	new CopyFilesParserImp(),
+  void 0,
+  void 0,
+  new StrictFilenameTransformerImp(),
+  new CopyFilesParserImp(),
 );
-const multiReplaceWithFolderService = new MultiReplaceService(void 0, void 0, new DirFilenameTransformerImp());
+const multiReplaceWithFolderService = new MultiReplaceService(
+  void 0,
+  void 0,
+  new DirFilenameTransformerImp(),
+);
 const multiReplaceServiceStrict = new MultiReplaceService(new StringTransformerImp([(str) => str]));
 
 export const multiReplace = multiReplaceService.multiReplace.bind(multiReplaceService);
 export const multiReplaceCopy = multiReplaceCopyService.multiReplace.bind(multiReplaceCopyService);
-export const multiReplaceWithFolder = multiReplaceWithFolderService.multiReplace.bind(multiReplaceWithFolderService);
-export const multiReplaceStrict = multiReplaceServiceStrict.multiReplace.bind(multiReplaceServiceStrict);
+export const multiReplaceWithFolder = multiReplaceWithFolderService.multiReplace.bind(
+  multiReplaceWithFolderService,
+);
+export const multiReplaceStrict =
+  multiReplaceServiceStrict.multiReplace.bind(multiReplaceServiceStrict);
