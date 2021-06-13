@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "strict": true,
-    "declaration": true,
     "baseUrl": ".",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -9,5 +8,5 @@
     "target": "esnext",
     "downlevelIteration": true
   },
-  "include": ["src"]
+  "files": ["src/extension.ts"]
 }
